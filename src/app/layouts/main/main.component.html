@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<mat-drawer-container>
+
+    <mat-drawer mode="side" opened>
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div *ngIf="isAdmin()"><app-admindashboard></app-admindashboard></div>
+        <div *ngIf="!isAdmin()"><app-dashboard></app-dashboard></div>
+        
+    </mat-drawer-content>
+
+</mat-drawer-container>
+

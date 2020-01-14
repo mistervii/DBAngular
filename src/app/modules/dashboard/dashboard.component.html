@@ -1,0 +1,202 @@
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Project Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="clipboard" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="form34" class="form-control" mdbInput mdbValidate [formControl]="contactFormModalName">
+          <label for="form34">Project name</label>
+          <mdb-error
+            *ngIf="contactFormModalName.invalid && (contactFormModalName.dirty || contactFormModalName.touched)">Input
+            invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="contactFormModalName.valid && (contactFormModalName.dirty || contactFormModalName.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="dollar-sign" class="prefix grey-text"></mdb-icon>
+          <input type="test" id="form29" class="form-control" mdbInput mdbValidate
+                 [formControl]="contactFormModalEmail">
+          <label for="form29">Project Budget</label>
+          <mdb-error
+            *ngIf="contactFormModalEmail.invalid && (contactFormModalEmail.dirty || contactFormModalEmail.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="contactFormModalEmail.valid && (contactFormModalEmail.dirty || contactFormModalEmail.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+        
+
+        <div class="md-form mb-5">
+          <mdb-icon far icon="calendar-alt" class="prefix grey-text"></mdb-icon>
+          <mat-form-field class="testform">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="md-form">
+          <mdb-icon fas icon="pencil-alt" class="prefix grey-text"></mdb-icon>
+          <textarea type="text" id="form8" class="md-textarea form-control" rows="1" mdbInput mdbValidate
+                    [formControl]="contactFormModalMessage"></textarea>
+          <label for="form8">Descriptiom</label>
+          <mdb-error
+            *ngIf="contactFormModalMessage.invalid && (contactFormModalMessage.dirty || contactFormModalMessage.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="contactFormModalMessage.valid && (contactFormModalMessage.dirty || contactFormModalMessage.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="unique" class="waves-light" mdbWavesEffect>ADD
+          <mdb-icon fas icon="plus" class="ml-1"></mdb-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+    Line charts
+    
+    
+
+</div>
+
+<mat-divider></mat-divider>
+
+
+
+<div class="row">
+  
+  
+        <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-danger card-btn">
+                      <div>
+                        <h4 class="card-title">Full header coloured</h4>
+                        <p class="card-category">Category subtitle</p>
+                      </div>
+                    <div class="test">
+                      <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+                      (click)="frame.show()" mdbWavesEffect> <mdb-icon fas icon="plus" class="ml-1"></mdb-icon>
+                   </button>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                            <div class="mat-elevation-z8">
+                                    <table mat-table [dataSource]="dataSource">
+                                  
+                                      <!-- Position Column -->
+                                      <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                                        <td mat-cell *matCellDef="let projet"> {{projet.id}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Name Column -->
+                                      <ng-container matColumnDef="nom">
+                                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                                        <td mat-cell *matCellDef="let projet"> {{projet.nom}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Weight Column -->
+                                      <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Desc </th>
+                                        <td mat-cell *matCellDef="let projet"> {{projet.description}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Symbol Column -->
+                                      <ng-container matColumnDef="budget">
+                                        <th mat-header-cell *matHeaderCellDef> Budjet </th>
+                                        <td mat-cell *matCellDef="let projet"> {{projet.budget}} </td>
+                                      </ng-container>
+                                  
+                                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    </table>
+                                  
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                  </div>    
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title"><mat-form-field>
+                                <mat-label>Choose Project</mat-label>
+                                <mat-select (selectionChange)="selectProject($event.value)">
+                                  <mat-option  *ngFor="let project of projets " [value]="project.id">
+                                    {{project.nom}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field></h4>
+                        
+                    </div>
+                    <div class="card-body">    
+                        
+                        <mat-tab-group>
+                                <mat-tab label="Tasks"> 
+                                  <div class="mat-elevation-z8">
+                                    <table mat-table [dataSource]="dataTacheSource" class="testable">
+                                  
+                                      <!-- Position Column -->
+                                      <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                                        <td mat-cell *matCellDef="let tache"> {{tache.id}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Name Column -->
+                                      <ng-container matColumnDef="nom">
+                                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                                        <td mat-cell *matCellDef="let tache"> {{tache.nom}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Weight Column -->
+                                      <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Desc </th>
+                                        <td mat-cell *matCellDef="let tache"> {{tache.description}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Symbol Column -->
+                                      <ng-container matColumnDef="budget">
+                                        <th mat-header-cell *matHeaderCellDef> Deadline </th>
+                                        <td mat-cell *matCellDef="let tache"> {{tache.deadline}} </td>
+                                      </ng-container>
+                                  
+                                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    </table>
+                                  
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                  </div> 
+                                
+                                
+                                </mat-tab>
+                                <mat-tab label="Files"> Content 2 </mat-tab>
+                                <mat-tab label="Comments"> Content 3 </mat-tab>
+                        </mat-tab-group>
+                          
+                    </div>
+                </div>
+       
+              </div>
+              
+</div>
+
